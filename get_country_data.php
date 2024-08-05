@@ -28,7 +28,7 @@ function getCountryData($lat, $lon) {
         'population' => number_format($countryData['population']),
         'currency' => $countryData['currencies'][0]['name'] . " (" . $countryData['currencies'][0]['code'] . ")",
         'weather' => "{$weatherData['weather'][0]['description']}, {$weatherData['main']['temp']}°C",
-        'flag' => $countryData['flag'],
+        'flag' => "https://flagcdn.com/w320/" . strtolower($countryCode) . ".png",
         'wikipedia' => "https://en.wikipedia.org/wiki/{$countryData['name']}"
     ];
 

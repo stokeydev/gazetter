@@ -78,4 +78,24 @@ $(document).ready(function () {
 
     // Load UK location on map load
     showUKLocation();
+
+    
+});
+// app.js
+$.ajax({
+    url: 'get_country_list.php',
+    type: 'GET',
+    success: function (data) {
+        try {
+            var countries = JSON.parse(data);
+            $.each(countries, function (index, country) {
+                $('#countrySelect').append(new Option(country.name, country.code));
+            });
+        } catch (e) {
+            console.error('Error parsing JSON:', e);
+        }
+    },
+    error: function (xhr, status, error) {
+        console.error('AJAX Error:', error);
+    }
 });
