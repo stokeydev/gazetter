@@ -1,9 +1,9 @@
 <?php
 function getCountryData($lat, $lon) {
-    $openCageApiKey = 'YOUR_OPENCAGE_API_KEY';
-    $openWeatherApiKey = 'YOUR_OPENWEATHER_API_KEY';
+    $openCageApiKey = 'Ybddb9c2c02fc4525b7898292a0743ba3';
+    $openWeatherApiKey = '093e2b867b39e631fd1a82fa8ea71f3f';
     $restCountriesUrl = 'https://restcountries.com/v2/alpha/';
-    $openExchangeRatesApiKey = 'YOUR_OPENEXCHANGERATES_API_KEY';
+    $openExchangeRatesApiKey = '0fc01c89e8ca4735b691aaaa9fc0c835';
 
     // Get country code from OpenCage
     $geocodeUrl = "https://api.opencagedata.com/geocode/v1/json?q={$lat}+{$lon}&key={$openCageApiKey}";
