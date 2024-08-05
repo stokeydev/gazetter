@@ -6,7 +6,7 @@ function getCountryData($lat, $lon) {
     $openExchangeRatesApiKey = 'bddb9c2c02fc4525b7898292a0743ba3';
 
     // Get country code from OpenCage
-    $geocodeUrl = "https://api.opencagedata.com/geocode/v1/json?q={$lat}+{$lon}&key={$openCageApiKey}";
+    $geocodeUrl = "https://api.opencagedata.com/geocode/v1/json?q={$lat}+{$lon}&key={$bddb9c2c02fc4525b7898292a0743ba3}";
     $geocodeResponse = file_get_contents($geocodeUrl);
     $geocodeData = json_decode($geocodeResponse, true);
     $countryCode = $geocodeData['results'][0]['components']['country_code'];
