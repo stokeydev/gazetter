@@ -17,7 +17,7 @@ function getCountryData($lat, $lon) {
     $countryData = json_decode($countryResponse, true);
 
     // Get current weather from OpenWeather
-    $weatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat={$lat}&lon={$lon}&appid={$openWeatherApiKey}&units=metric";
+    $weatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat={$lat}&lon={$lon}&appid={$093e2b867b39e631fd1a82fa8ea71f3f}&units=metric";
     $weatherResponse = file_get_contents($weatherUrl);
     $weatherData = json_decode($weatherResponse, true);
 
