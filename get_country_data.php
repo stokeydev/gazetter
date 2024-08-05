@@ -1,9 +1,9 @@
 <?php
 function getCountryData($lat, $lon) {
-    $openCageApiKey = 'YOUR_OPENCAGE_API_KEY';
+    $openCageApiKey = 'bddb9c2c02fc4525b7898292a0743ba3';
     $openWeatherApiKey = 'YOUR_OPENWEATHER_API_KEY';
     $restCountriesUrl = 'https://restcountries.com/v2/alpha/';
-    $openExchangeRatesApiKey = 'YOUR_OPENEXCHANGERATES_API_KEY';
+    $openExchangeRatesApiKey = 'bddb9c2c02fc4525b7898292a0743ba3';
 
     // Get country code from OpenCage
     $geocodeUrl = "https://api.opencagedata.com/geocode/v1/json?q={$lat}+{$lon}&key={$openCageApiKey}";
@@ -36,7 +36,7 @@ function getCountryData($lat, $lon) {
         'currency' => "{$currency} ({$countryData['currencies'][0]['name']})",
         'exchangeRate' => number_format($exchangeRate, 2),
         'weather' => "{$weatherData['weather'][0]['description']}, {$weatherData['main']['temp']}°C",
-        'wikipedia' => $countryData['flag'] // Assuming flag URL for simplicity, you can modify this as needed
+        'wikipedia' => $countryData['flag']
     ];
 
     return json_encode($result);
@@ -48,10 +48,10 @@ if (isset($_POST['lat']) && isset($_POST['lon'])) {
     echo getCountryData($lat, $lon);
 } elseif (isset($_POST['code'])) {
     $countryCode = $_POST['code'];
-    // Mock location for simplicity, you may need to adapt this part
+   
     $latLonMap = [
         'US' => ['lat' => 37.7749, 'lon' => -122.4194],
-        // Add other countries as needed
+
     ];
     if (array_key_exists($countryCode, $latLonMap)) {
         $lat = $latLonMap[$countryCode]['lat'];
