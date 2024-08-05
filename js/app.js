@@ -1,40 +1,11 @@
 $(document).ready(function () {
-    // Initialize the map
-    var map = L.map('map').setView([0, 0], 2);
+    // Initialize the map focused on the UK
+    var map = L.map('map').setView([55.3781, -3.4360], 5);
 
     // Load and display tile layers
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
     }).addTo(map);
-
-    // Function to get and display user's current location
-    function showCurrentLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var lat = position.coords.latitude;
-                var lon = position.coords.longitude;
-                map.setView([lat, lon], 5);
-
-                // AJAX call to PHP to get country data based on lat/lon
-                $.ajax({
-                    url: 'get_country_data.php',
-                    type: 'POST',
-                    data: { lat: lat, lon: lon },
-                    success: function (data) {
-                        var countryData = JSON.parse(data);
-                        displayCountryData(countryData);
-                    },
-                    error: function (xhr, status, error) {
-                        console.error('AJAX Error:', error);
-                    }
-                });
-            }, function (error) {
-                console.error('Error getting geolocation:', error);
-            });
-        } else {
-            alert("Geolocation is not supported by this browser.");
-        }
-    }
 
     // Function to display country data in the modal
     function displayCountryData(countryData) {
@@ -42,8 +13,9 @@ $(document).ready(function () {
         var countryInfoHtml = `
             <p>Capital: ${countryData.capital}</p>
             <p>Population: ${countryData.population}</p>
-            <p>Currency: ${countryData.currency} (${countryData.exchangeRate})</p>
+            <p>Currency: ${countryData.currency}</p>
             <p>Weather: ${countryData.weather}</p>
+            <p><img src="${countryData.flag}" alt="Flag of ${countryData.name}" style="width: 100px;"></p>
             <p><a href="${countryData.wikipedia}" target="_blank">More Info</a></p>
         `;
         $('#countryInfo').html(countryInfoHtml);
@@ -83,6 +55,27 @@ $(document).ready(function () {
         });
     });
 
-    // Load current location on map load
-    showCurrentLocation();
+    // Function to get and display UK location
+    function showUKLocation() {
+        // Mock UK coordinates for demonstration
+        var ukLat = 55.3781;
+        var ukLon = -3.4360;
+
+        // AJAX call to PHP to get country data based on UK lat/lon
+        $.ajax({
+            url: 'get_country_data.php',
+            type: 'POST',
+            data: { lat: ukLat, lon: ukLon },
+            success: function (data) {
+                var countryData = JSON.parse(data);
+                displayCountryData(countryData);
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX Error:', error);
+            }
+        });
+    }
+
+    // Load UK location on map load
+    showUKLocation();
 });
